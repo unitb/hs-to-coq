@@ -4,6 +4,7 @@
              TemplateHaskell,
              ScopedTypeVariables #-}
 
+
 module HsToCoq.CLI (
   -- * General main-action creator
   processFilesMain,
