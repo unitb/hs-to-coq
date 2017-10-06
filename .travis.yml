@@ -31,6 +31,7 @@ cache:
   - $HOME/.stack
   - $HOME/ghc
   - $HOME/.opam
+  - $HOME/.stack-work-cache
 
 # Ensure necessary system libraries are present
 addons:
@@ -59,6 +60,10 @@ before_install:
 
  # Only build the `hs-to-coq` project
  - cd hs-to-coq
+
+ # Cache .stack-work
+ - mkdir -p $HOME/.stack-work-cache
+ - ln -s $HOME/.stack-work-cache .stack-work
 
 install:
  # Build dependencies
