@@ -31,6 +31,7 @@ cache:
   - $HOME/.stack
   - $HOME/ghc
   - $HOME/.opam
+  - $HOME/unitb/hs-to-coq/lean/_target
 
 # Ensure necessary system libraries are present
 addons:
@@ -68,6 +69,14 @@ jobs:
   include:
     - stage: setup ghc
       script: True
+    - stage: setup Lean
+      script:
+      - curl https://github.com/leanprover/lean-nightly/releases/download/nightly-2018-04-02/lean-3.3.1-nightly-2018-04-02-linux.tar.gz | tar xz -C ..
+      - export PATH=../lean-nightly-linux/bin:$PATH
+      - cd lean
+      - leanpkg configure
+      - lean --make _target/deps/mathlib
+
     - stage: setup Coq
       script:
         - opam list -i coq-mathcomp-ssreflect || opam install -y coq-mathcomp-ssreflect
