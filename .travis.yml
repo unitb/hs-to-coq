@@ -64,8 +64,8 @@ install:
  - stack --no-terminal --install-ghc test --only-dependencies
  # dependencies of the containers code that we translate
  - stack --no-terminal --install-ghc install QuickCheck HUnit test-framework test-framework-hunit test-framework-quickcheck2
- - curl https://github.com/leanprover/lean-nightly/releases/download/nightly-2018-04-02/lean-3.3.1-nightly-2018-04-02-linux.tar.gz | tar xz -C ..
- - export PATH=../lean-nightly-linux/bin:$PATH
+ -  wget -c https://github.com/leanprover/lean-nightly/releases/download/nightly-2018-04-02/lean-3.3.1-nightly-2018-04-02-linux.tar.gz -O | tar xz -C $HOME
+ - export PATH=$HOME/lean-nightly-linux/bin:$PATH
 
 jobs:
   include:
