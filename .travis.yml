@@ -52,7 +52,9 @@ before_install:
  # - mkdir -p ~/ghc
  # - '[[ -n $(find ~/ghc -prune -empty) ]] && (cd ~/ghc; travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz --strip-components 1)'
  # Install COQ
+ - opam config env
  - if ! [ -e $HOME/.opam/config ]; then opam init -j 2 --compiler=system -n -y; fi
+ - $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
  - opam repo add coq-released http://coq.inria.fr/opam/released || true
  - opam list -i coq.8.7.2 || { opam update && opam unpin coq && opam install -v -y -j 1  coq.8.7.2 ocamlfind.1.7.3-1 ; }
 
